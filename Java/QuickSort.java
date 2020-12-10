@@ -1,21 +1,23 @@
 private int pivot(int[] Arr, int low, int high, boolean ascending) {
 	int pivotValue = Arr[high];
 	int pivotPoint = (low - 1);
+	int temp;
 
-	for (int j = low; j < high; j++) {
-		if ((Arr[j] < pivotValue && ascending) || (Arr[j] > pivotValue && !ascending)) {
+	for (int i = low; i < high; i++) {
+		if ((Arr[i] < pivotValue && ascending) || (Arr[i] > pivotValue && !ascending)) {
 			pivotPoint++;
-			int temp = Arr[pivotPoint];
-			Arr[pivotPoint] = Arr[j];
-			Arr[j] = temp;
+			temp = Arr[pivotPoint];
+			Arr[pivotPoint] = Arr[i];
+			Arr[i] = temp;
 		}
 	}
 
-	int temp = Arr[pivotPoint + 1];
-    Arr[pivotPoint + 1] = Arr[high];
-    Arr[high] = temp;
+	pivotPoint++;
+	temp = Arr[pivotPoint];
+	Arr[pivotPoint] = Arr[high];
+	Arr[high] = temp;
 
-    return pivotPoint + 1;
+    return pivotPoint;
 }
 
 private void quickSort(int[] Arr, int low, int high, boolean ascending) {
